@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Love Logs</title>
+  <style>
+    body { font-family: Arial; background: #ffe6f0; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background-color: #ffb3c6; }
+  </style>
+</head>
+<body>
+  <h2>❤️ Love Calculator Logs (Admin Panel)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Your Name</th>
+        <th>Crush Name</th>
+        <th>Love %</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody id="logTableBody"></tbody>
+  </table>
+
+  <script>
+    const logs = JSON.parse(localStorage.getItem("loveLogs")) || [];
+    const tableBody = document.getElementById("logTableBody");
+
+    logs.forEach(log => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${log.yourName}</td>
+        <td>${log.crushName}</td>
+        <td>${log.percentage}%</td>
+        <td>${log.time}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
